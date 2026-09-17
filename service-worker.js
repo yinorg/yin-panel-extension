@@ -87,9 +87,16 @@ async function fetchOne(url, { publicFallback = true } = {}) {
       if (icon) return { url, ...icon }
     }
     if (publicFallback) {
-      const fallback = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(page.hostname)}&sz=64`
-      const icon = await fetchImage(fallback)
-      if (icon) return { url, ...icon, source: 'public' }
+      const publicCandidates = [
+        `https://www.google.com/s2/favicons?domain=${encodeURIComponent(page.hostname)}&sz=64`,
+        `https://icons.duckduckgo.com/ip3/${encodeURIComponent(page.hostname)}.ico`,
+        `https://favicon.im/${encodeURIComponent(page.hostname)}`,
+        `https://api.faviconkit.com/${encodeURIComponent(page.hostname)}/128`,
+      ]
+      for (const fallback of publicCandidates) {
+        const icon = await fetchImage(fallback)
+        if (icon) return { url, ...icon, source: 'public' }
+      }
     }
     return { url, error: 'icon not found' }
   } catch (_) { return { url, error: 'fetch failed' } }
