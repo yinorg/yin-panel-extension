@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>新标签页设置</title>
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <main class="settings">
+    <h1>新标签页设置</h1>
+    <p class="description">设置打开新标签页时访问的地址。</p>
+    <label for="new-tab-url">新标签页地址</label>
+    <input id="new-tab-url" type="url" autocomplete="url" spellcheck="false" placeholder="http://panel.yiniot.com">
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <div class="actions">
+      <button id="save" type="button">保存</button>
+      <button id="reset" class="secondary" type="button">恢复默认</button>
+    </div>
+    <section class="proxy-section">
+      <h2>图标代理（失败重试）</h2>
+      <p class="description">仅在图标直连和公共服务失败时临时使用，任务结束后恢复浏览器原代理。</p>
+      <label for="proxy-url">代理地址</label>
+      <input id="proxy-url" type="url" autocomplete="off" spellcheck="false" placeholder="http://192.168.31.10:7890">
+      <div class="actions">
+        <button id="save-proxy" type="button">保存代理</button>
+        <button id="clear-proxy" class="secondary" type="button">清除代理</button>
+      </div>
+    </section>
+  </main>
+  <script src="config.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html>
