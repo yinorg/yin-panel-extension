@@ -2,9 +2,17 @@ const MAX_CONCURRENCY = 1000
 const MAX_BYTES = 5 * 1024 * 1024
 const PAGE_TIMEOUT = 5000
 const ICON_TIMEOUT = 3500
-const IMAGE_TYPES = new Set(['image/png', 'image/jpeg', 'image/gif', 'image/webp', 'image/svg+xml', 'image/x-icon', 'image/vnd.microsoft.icon'])
-const PROXY_STORAGE_KEY = 'iconProxy'
-let proxyQueue = Promise.resolve()
+const PUBLIC_MAX_CONCURRENCY = 8
+const IMAGE_TYPES = new Set(['image/png', 'image/jpeg', 'image/gif', 'image/webp', 'image/avif', 'image/svg+xml', 'image/x-icon', 'image/vnd.microsoft.icon'])
+
+const PUBLIC_FAVICON_SERVICES = [
+  hostname => `https://www.google.com/s2/favicons?domain=${encodeURIComponent(hostname)}&sz=64`,
+  hostname => `https://icons.duckduckgo.com/ip3/${encodeURIComponent(hostname)}.ico`,
+  hostname => `https://favicon.im/${encodeURIComponent(hostname)}`,
+  hostname => `https://api.faviconkit.com/${encodeURIComponent(hostname)}/128`,
+  hostname => `https://favicon.cccyun.cc/favicon.ico?url=${encodeURIComponent(hostname)}`,
+  hostname => `https://icon.horse/icon/${encodeURIComponent(hostname)}`,
+]
 
 function toBase64(buffer) {
   const bytes = new Uint8Array(buffer); let result = ''
@@ -12,22 +20,25 @@ function toBase64(buffer) {
   return btoa(result)
 }
 
-function generatedIcon(url, reason = 'icon not found') {
-  const host = new URL(url).hostname.replace(/^www\./i, '')
-  const text = (host.match(/[a-z0-9]/i)?.[0] || '?').toUpperCase()
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect width="64" height="64" rx="12" fill="#2563eb"/><text x="32" y="42" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" fill="white">${text}</text></svg>`
-  return { url, mimeType: 'image/svg+xml', data: toBase64(new TextEncoder().encode(svg)), source: 'generated', reason }
+function attribute(tag, name) {
+  return tag.match(new RegExp(`\\b${name}\\s*=\\s*(?:["']([^"']*)["']|([^\\s>]+))`, 'i'))?.slice(1).find(Boolean) || ''
 }
 
 function iconLinks(html, pageUrl) {
   const links = []
   for (const tag of html.match(/<link\b[^>]*>/gi) || []) {
-    const rel = tag.match(/\brel\s*=\s*["']([^"']*)["']/i)?.[1] || ''
-    const href = tag.match(/\bhref\s*=\s*["']([^"']*)["']/i)?.[1] || ''
-    if (!href || (!/(^|\s)(icon|shortcut|apple-touch-icon|mask-icon)(\s|$)/i.test(rel) && !/icon/i.test(rel))) continue
-    try { links.push(new URL(href, pageUrl).href) } catch (_) {}
+    const rel = attribute(tag, 'rel').toLowerCase().split(/\s+/).filter(Boolean)
+    const href = attribute(tag, 'href')
+    const type = attribute(tag, 'type').toLowerCase().split(';')[0]
+    const sizes = attribute(tag, 'sizes').toLowerCase()
+    const kind = rel.includes('icon') ? 'icon' : rel.includes('shortcut') && rel.includes('icon') ? 'icon' : rel.includes('apple-touch-icon') ? 'apple' : rel.includes('mask-icon') ? 'mask' : ''
+    if (!href || !kind || (type && !IMAGE_TYPES.has(type))) continue
+    const size = sizes.match(/(?:^|\s)(\d+)x(\d+)(?:\s|$)/)
+    const score = kind === 'icon' ? 0 : kind === 'apple' ? 1 : 2
+    const sizeScore = size ? Math.abs(Math.max(Number(size[1]), Number(size[2])) - 64) : 1000
+    try { links.push({ url: new URL(href, pageUrl).href, score, sizeScore }) } catch (_) {}
   }
-  return links
+  return links.sort((a, b) => a.score - b.score || a.sizeScore - b.sizeScore).map(item => item.url)
 }
 
 function imageType(bytes, contentType) {
@@ -50,7 +61,7 @@ async function request(url, options = {}, timeout = ICON_TIMEOUT) {
   finally { clearTimeout(timer) }
 }
 
-async function fetchImage(url) {
+async function fetchImage(url, source = 'site') {
   try {
     const response = await request(url, { headers: { accept: 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8' } })
     if (!response.ok) return null
@@ -59,7 +70,7 @@ async function fetchImage(url) {
     const bytes = await response.arrayBuffer()
     if (!bytes.byteLength || bytes.byteLength > MAX_BYTES) return null
     const mimeType = imageType(bytes, response.headers.get('content-type'))
-    return mimeType ? { mimeType, data: toBase64(bytes), source: 'site' } : null
+    return mimeType ? { mimeType, data: toBase64(bytes), source } : null
   } catch (_) { return null }
 }
 
@@ -74,11 +85,11 @@ async function candidatesFor(url) {
   for (const candidate of [page.href, pageUrl]) {
     try { const origin = new URL(candidate).origin; if (!origins.includes(origin)) origins.push(origin) } catch (_) {}
   }
-  for (const origin of origins) for (const path of ['/favicon.ico', '/favicon.png', '/apple-touch-icon.png', '/favicon.svg']) candidates.push(origin + path)
+  for (const origin of origins) for (const path of ['/favicon.ico', '/favicon.png', '/favicon.svg', '/apple-touch-icon.png']) candidates.push(origin + path)
   return [...new Set(candidates)]
 }
 
-async function fetchOne(url, { publicFallback = true } = {}) {
+async function fetchSiteIcon(url) {
   try {
     const page = new URL(url)
     if (!['http:', 'https:'].includes(page.protocol)) return { url, error: 'unsupported scheme' }
@@ -86,60 +97,57 @@ async function fetchOne(url, { publicFallback = true } = {}) {
       const icon = await fetchImage(candidate)
       if (icon) return { url, ...icon }
     }
-    if (publicFallback) {
-      const publicCandidates = [
-        `https://www.google.com/s2/favicons?domain=${encodeURIComponent(page.hostname)}&sz=64`,
-        `https://icons.duckduckgo.com/ip3/${encodeURIComponent(page.hostname)}.ico`,
-        `https://favicon.im/${encodeURIComponent(page.hostname)}`,
-        `https://api.faviconkit.com/${encodeURIComponent(page.hostname)}/128`,
-      ]
-      for (const fallback of publicCandidates) {
-        const icon = await fetchImage(fallback)
-        if (icon) return { url, ...icon, source: 'public' }
-      }
-    }
     return { url, error: 'icon not found' }
   } catch (_) { return { url, error: 'fetch failed' } }
 }
 
-function proxyCall(method, details) {
-  return new Promise((resolve, reject) => chrome.proxy.settings[method](details, value => {
-    const error = chrome.runtime.lastError
-    if (error) reject(new Error(error.message)); else resolve(value)
+async function probePublicServices() {
+  const probeHostname = 'github.com'
+  const probes = await Promise.all(PUBLIC_FAVICON_SERVICES.map(async (build, index) => {
+    const started = performance.now()
+    const icon = await fetchImage(build(probeHostname), 'public')
+    return icon ? { index, icon, elapsed: performance.now() - started } : null
   }))
+  return probes.filter(Boolean).sort((a, b) => a.elapsed - b.elapsed)
 }
 
-function validProxy(value) {
-  return value && ['http', 'https', 'socks4', 'socks5'].includes(value.scheme) && typeof value.host === 'string' && value.host.trim() && Number.isInteger(Number(value.port)) && Number(value.port) >= 1 && Number(value.port) <= 65535
+async function fetchPublicIcon(url, service) {
+  let hostname
+  try { hostname = new URL(url).hostname } catch (_) { return { url, error: 'fetch failed' } }
+  const icon = await fetchImage(PUBLIC_FAVICON_SERVICES[service.index](hostname), 'public')
+  return icon ? { url, ...icon } : { url, error: 'icon not found' }
 }
 
-async function retryWithProxy(urls, config) {
-  if (!validProxy(config) || !urls.length) return []
-  let release; const previous = proxyQueue; proxyQueue = new Promise(resolve => { release = resolve }); await previous
-  let original
-  try {
-    original = await proxyCall('get', { incognito: false })
-    const value = { mode: 'fixed_servers', rules: { singleProxy: { scheme: config.scheme, host: config.host.trim(), port: Number(config.port) } } }
-    await proxyCall('set', { value, scope: 'regular' })
-    // Keep the public favicon fallback enabled during proxy retries as well.
-    const results = await Promise.all(urls.map(url => fetchOne(url, { publicFallback: true })))
-    await proxyCall('set', { value: original.value || { mode: 'system' }, scope: 'regular' })
-    return results
-  } catch (_) {
-    if (original) { try { await proxyCall('set', { value: original.value || { mode: 'system' }, scope: 'regular' }) } catch (_) {} }
-    return []
-  } finally { release() }
+async function fetchPublicIcons(urls, services) {
+  if (!urls.length || !services.length) return urls.map(url => ({ url, error: 'icon not found' }))
+
+  // Each available service owns eight workers. Workers pull from one shared
+  // queue so a slow service cannot leave its slots permanently unused.
+  const results = new Array(urls.length); let next = 0
+  const workers = services.flatMap(service => Array.from({ length: PUBLIC_MAX_CONCURRENCY }, async () => {
+    while (true) {
+      const index = next++
+      if (index >= urls.length) return
+      results[index] = await fetchPublicIcon(urls[index], service)
+    }
+  }))
+  await Promise.all(workers)
+  return results
 }
 
 async function fetchAll(urls) {
   const items = new Array(urls.length); let next = 0
-  const proxyValues = await chrome.storage.sync.get({ [PROXY_STORAGE_KEY]: null }).catch(() => ({ [PROXY_STORAGE_KEY]: null }))
-  const worker = async () => { while (next < urls.length) { const index = next++; items[index] = await fetchOne(urls[index]) } }
+  const worker = async () => { while (next < urls.length) { const index = next++; items[index] = await fetchSiteIcon(urls[index]) } }
   await Promise.all(Array.from({ length: Math.min(MAX_CONCURRENCY, urls.length) }, worker))
   const failedIndexes = items.map((item, index) => item.error ? index : -1).filter(index => index >= 0)
-    const proxyResults = await retryWithProxy(failedIndexes.map(index => urls[index]), proxyValues[PROXY_STORAGE_KEY])
-  proxyResults.forEach((item, index) => { if (!item.error) items[failedIndexes[index]] = item })
-  items.forEach((item, index) => { if (item.error) items[index] = generatedIcon(urls[index], item.error) })
+  const hasHttpFailure = failedIndexes.some(index => {
+    try { return /^https?:$/i.test(new URL(urls[index]).protocol) } catch (_) { return false }
+  })
+  const availablePublicServices = hasHttpFailure ? await probePublicServices() : []
+  const publicResults = availablePublicServices.length
+    ? await fetchPublicIcons(failedIndexes.map(index => urls[index]), availablePublicServices)
+    : failedIndexes.map(index => items[index])
+  publicResults.forEach((item, index) => { items[failedIndexes[index]] = item })
   return items
 }
 
