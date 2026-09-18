@@ -1,6 +1,6 @@
-# Yin-Panel Icon Fetcher
+# Yin-Panel Helper
 
-This optional Chrome Manifest V3 extension lets Yin-Panel read favicon bytes from sites that do not enable CORS.
+This optional Chrome Manifest V3 extension helps Yin-Panel import bookmarks by retrieving real site favicon bytes when normal browser requests are blocked by CORS restrictions. It also supports public favicon fallbacks, temporary proxy retries, and an optional new-tab redirect.
 
 1. Open `chrome://extensions`.
 2. Enable Developer mode.

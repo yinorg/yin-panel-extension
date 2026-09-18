@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Yin-Panel Icon Fetcher",
+  "name": "Yin-Panel Helper",
   "version": "0.1.0",
-  "description": "Fetches bookmark icons for Yin-Panel without browser CORS limitations.",
+  "description": "Browser helper for Yin-Panel bookmark imports, favicon retrieval, proxy retries, and optional new-tab redirection.",
   "permissions": ["storage", "proxy"],
   "host_permissions": ["<all_urls>"],
   "background": { "service_worker": "service-worker.js" },
