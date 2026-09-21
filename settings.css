@@ -22,8 +22,6 @@ body { margin: 0; min-width: 320px; }
 h1 { margin: 0; font-size: 22px; }
 .description { margin: 8px 0 24px; color: #64748b; font-size: 14px; }
 label { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; }
-.checkbox-label { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; }
-.checkbox-label input { width: auto; }
 input { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font: inherit; }
 input:focus { outline: 2px solid #93c5fd; outline-offset: 1px; }
 .status { min-height: 20px; margin: 8px 0 16px; color: #2563eb; font-size: 13px; }

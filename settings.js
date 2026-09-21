@@ -1,8 +1,5 @@
 const input = document.querySelector('#new-tab-url')
-const enabled = document.querySelector('#new-tab-enabled')
 const status = document.querySelector('#status')
-
-enabled.checked = DEFAULT_NEW_TAB_ENABLED
 
 function setStatus(message, error = false) {
   status.textContent = message
@@ -11,14 +8,9 @@ function setStatus(message, error = false) {
 
 async function readUrl() {
   try {
-    const values = await chrome.storage.sync.get({
-      [NEW_TAB_STORAGE_KEY]: DEFAULT_NEW_TAB_URL,
-      [NEW_TAB_ENABLED_STORAGE_KEY]: DEFAULT_NEW_TAB_ENABLED
-    })
-    enabled.checked = values[NEW_TAB_ENABLED_STORAGE_KEY] === true
+    const values = await chrome.storage.sync.get({ [NEW_TAB_STORAGE_KEY]: DEFAULT_NEW_TAB_URL })
     return normalizeNewTabUrl(values[NEW_TAB_STORAGE_KEY]) || DEFAULT_NEW_TAB_URL
   } catch (_) {
-    enabled.checked = DEFAULT_NEW_TAB_ENABLED
     return DEFAULT_NEW_TAB_URL
   }
 }
@@ -31,10 +23,7 @@ async function saveUrl() {
     return
   }
   try {
-    await chrome.storage.sync.set({
-      [NEW_TAB_STORAGE_KEY]: url,
-      [NEW_TAB_ENABLED_STORAGE_KEY]: enabled.checked
-    })
+    await chrome.storage.sync.set({ [NEW_TAB_STORAGE_KEY]: url })
     input.value = url
     setStatus('已保存。')
   } catch (_) {
@@ -44,13 +33,9 @@ async function saveUrl() {
 
 async function resetUrl() {
   try {
-    await chrome.storage.sync.set({
-      [NEW_TAB_STORAGE_KEY]: DEFAULT_NEW_TAB_URL,
-      [NEW_TAB_ENABLED_STORAGE_KEY]: DEFAULT_NEW_TAB_ENABLED
-    })
+    await chrome.storage.sync.set({ [NEW_TAB_STORAGE_KEY]: DEFAULT_NEW_TAB_URL })
     input.value = DEFAULT_NEW_TAB_URL
-    enabled.checked = DEFAULT_NEW_TAB_ENABLED
-    setStatus('已恢复默认设置。')
+    setStatus('已恢复默认地址。')
   } catch (_) {
     setStatus('保存失败，请稍后重试。', true)
   }
