@@ -1,0 +1,214 @@
+name: Publish Chrome extension
+
+on:
+  push:
+    tags:
+      - 'v*'
+      - '[0-9]*'
+
+concurrency:
+  group: chrome-web-store-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v5
+
+      - name: Validate tag version
+        id: version
+        env:
+          TAG_NAME: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          node <<'NODE'
+          const fs = require('node:fs');
+
+          const tag = process.env.TAG_NAME ?? '';
+          const version = tag.startsWith('v') ? tag.slice(1) : tag;
+          const parts = version.split('.');
+
+          if (!/^\d+(?:\.\d+){0,3}$/.test(version)) {
+            throw new Error(`Tag "${tag}" must be a Chrome version such as v1.2.3.`);
+          }
+
+          if (parts.some((part) =>
+            (part.length > 1 && part.startsWith('0')) || BigInt(part) > 65535n
+          )) {
+            throw new Error(`Tag "${tag}" contains an invalid Chrome version segment.`);
+          }
+
+          if (parts.every((part) => BigInt(part) === 0n)) {
+            throw new Error(`Tag "${tag}" cannot represent version 0.`);
+          }
+
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `version=${version}\n`);
+          console.log(`Using extension version ${version} from tag ${tag}.`);
+          NODE
+
+      - name: Build extension package
+        id: package
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          package_root="$(mktemp -d)"
+          package_file="${RUNNER_TEMP}/yin-panel-extension-${VERSION}.zip"
+
+          rsync -a \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'AGENTS.md' \
+            --exclude 'README.md' \
+            --exclude 'tests/' \
+            --exclude '*.zip' \
+            ./ "${package_root}/"
+
+          jq --arg version "${VERSION}" \
+            '.version = $version' \
+            "${package_root}/manifest.json" > "${package_root}/manifest.json.tmp"
+          mv "${package_root}/manifest.json.tmp" "${package_root}/manifest.json"
+
+          test "$(jq -r '.version' "${package_root}/manifest.json")" = "${VERSION}"
+          (
+            cd "${package_root}"
+            zip -q -r "${package_file}" .
+          )
+
+          echo "package=${package_file}" >> "${GITHUB_OUTPUT}"
+          echo "Created ${package_file}."
+
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+          token_format: access_token
+          access_token_scopes: https://www.googleapis.com/auth/chromewebstore
+
+      - name: Upload and submit extension
+        env:
+          ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
+          PUBLISHER_ID: ${{ secrets.CHROME_WEBSTORE_PUBLISHER_ID }}
+          EXTENSION_ID: ${{ secrets.CHROME_WEBSTORE_EXTENSION_ID }}
+          PACKAGE: ${{ steps.package.outputs.package }}
+          VERSION: ${{ steps.version.outputs.version }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          : "${ACCESS_TOKEN:?The Google access token is missing.}"
+          : "${PUBLISHER_ID:?CHROME_WEBSTORE_PUBLISHER_ID is missing.}"
+          : "${EXTENSION_ID:?CHROME_WEBSTORE_EXTENSION_ID is missing.}"
+          : "${PACKAGE:?The extension package path is missing.}"
+          test -f "${PACKAGE}"
+
+          if [[ ! "${PUBLISHER_ID}" =~ ^[A-Za-z0-9_-]+$ ]]; then
+            echo 'CHROME_WEBSTORE_PUBLISHER_ID contains unsupported characters.' >&2
+            exit 1
+          fi
+          if [[ ! "${EXTENSION_ID}" =~ ^[a-p]{32}$ ]]; then
+            echo 'CHROME_WEBSTORE_EXTENSION_ID must be a 32-character Chrome extension ID.' >&2
+            exit 1
+          fi
+
+          item="publishers/${PUBLISHER_ID}/items/${EXTENSION_ID}"
+          api_base='https://chromewebstore.googleapis.com'
+
+          upload_response="$(curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header "Authorization: Bearer ${ACCESS_TOKEN}" \
+            --header 'Content-Type: application/zip' \
+            --data-binary "@${PACKAGE}" \
+            "${api_base}/upload/v2/${item}:upload")"
+          printf '%s\n' "${upload_response}" | jq .
+
+          upload_state="$(jq -r '.uploadState // empty' <<< "${upload_response}")"
+          upload_complete=false
+
+          case "${upload_state}" in
+            SUCCEEDED)
+              uploaded_version="$(jq -r '.crxVersion // empty' <<< "${upload_response}")"
+              if [[ "${uploaded_version}" != "${VERSION}" ]]; then
+                echo "Chrome Web Store accepted version ${uploaded_version}, expected ${VERSION}." >&2
+                exit 1
+              fi
+              upload_complete=true
+              ;;
+            IN_PROGRESS|UPLOAD_IN_PROGRESS)
+              for attempt in {1..30}; do
+                sleep 5
+                status_response="$(curl --fail-with-body --silent --show-error \
+                  --header "Authorization: Bearer ${ACCESS_TOKEN}" \
+                  "${api_base}/v2/${item}:fetchStatus")"
+                status_state="$(jq -r '.lastAsyncUploadState // empty' <<< "${status_response}")"
+
+                case "${status_state}" in
+                  SUCCEEDED)
+                    upload_complete=true
+                    break
+                    ;;
+                  FAILED)
+                    printf '%s\n' "${status_response}" | jq . >&2
+                    echo 'Chrome Web Store rejected the uploaded package.' >&2
+                    exit 1
+                    ;;
+                  IN_PROGRESS|UPLOAD_IN_PROGRESS|'')
+                    ;;
+                  *)
+                    echo "Unexpected asynchronous upload state: ${status_state}" >&2
+                    printf '%s\n' "${status_response}" | jq . >&2
+                    exit 1
+                    ;;
+                esac
+
+                if [[ "${attempt}" -eq 30 ]]; then
+                  echo 'Timed out waiting for the Chrome Web Store upload.' >&2
+                  exit 1
+                fi
+              done
+              ;;
+            FAILED)
+              echo 'Chrome Web Store rejected the uploaded package.' >&2
+              exit 1
+              ;;
+            *)
+              echo "Unexpected upload state: ${upload_state}" >&2
+              exit 1
+              ;;
+          esac
+
+          if [[ "${upload_complete}" != true ]]; then
+            echo 'The Chrome Web Store upload did not complete.' >&2
+            exit 1
+          fi
+
+          publish_response="$(curl --fail-with-body --silent --show-error \
+            --request POST \
+            --header "Authorization: Bearer ${ACCESS_TOKEN}" \
+            --header 'Content-Type: application/json' \
+            --data '{"publishType":"DEFAULT_PUBLISH"}' \
+            "${api_base}/v2/${item}:publish")"
+          printf '%s\n' "${publish_response}" | jq .
+
+          publish_state="$(jq -r '.state // empty' <<< "${publish_response}")"
+          case "${publish_state}" in
+            PENDING_REVIEW|PUBLISHED|STAGED)
+              echo "Submitted version ${VERSION} to the Chrome Web Store (${publish_state})."
+              ;;
+            *)
+              echo "Unexpected publish state: ${publish_state}" >&2
+              exit 1
+              ;;
+          esac
