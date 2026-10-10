@@ -28,6 +28,10 @@ Yin-Panel 的選用 Chrome Manifest V3 擴充功能。當一般瀏覽器請求�
 - 若上述方式皆失敗，則會探測公開 favicon 服務，為每個可用的服務建立一個八個請求的集區。
 - 查詢失敗的結果會傳回 Yin-Panel，由它套用自身的 favicon 與文字圖示後援方案；擴充功能不會另外產生後援圖示。
 
+## 多語言
+
+介面語言會跟隨瀏覽器介面語言。英文、簡體中文、繁體中文、日文、韓文、德文、法文、西班牙文、巴西葡萄牙文與俄文的文案存放於 `_locales/`；其他瀏覽器語言會回退為英文。擴充功能頁面文案透過 `i18n.js` 解析，絕不硬編碼。
+
 ## 開發
 
 | 檔案 | 角色 |
@@ -37,6 +41,7 @@ Yin-Panel 的選用 Chrome Manifest V3 擴充功能。當一般瀏覽器請求�
 | `config.js` | 新分頁網址正規化與預設目標 |
 | `newtab.html`, `newtab.js` | 新分頁覆寫與重新導向 |
 | `settings.html`, `settings.css`, `settings.js` | 選項頁面與工具列彈出式視窗 |
+| `i18n.js`, `_locales/` | 共用頁面在地化輔助程式與各語言訊息目錄 |
 | `manifest.json` | 權限、進入點、新分頁覆寫與內容指令碼註冊 |
 
 沒有建置步驟；每個檔案都是直接載入。使用以下指令檢查 JavaScript 與資訊清單：
@@ -47,6 +52,7 @@ node --check content-script.js
 node --check config.js
 node --check newtab.js
 node --check settings.js
+node --check i18n.js
 ```
 
 [AGENTS.md](../../AGENTS.md) 說明了行為不變條件、測試放置位置與安全規則。瀏覽器層級的驗收測試位於 [E2E 儲存庫](https://github.com/yinorg/yin-panel-e2e)；Core 服務位於 [yinorg/Yin-Panel](https://github.com/yinorg/Yin-Panel)。

@@ -28,6 +28,10 @@ Extension Chrome Manifest V3 facultative pour Yin-Panel. Elle récupère les oct
 - En cas d'échec, il sonde les services publics de favicons, en créant un pool de huit requêtes pour chaque service utilisable.
 - Les recherches infructueuses sont renvoyées à Yin-Panel, qui applique ses propres solutions de repli en favicon et en icône textuelle ; l'extension ne génère pas d'icône de repli distincte.
 
+## Langues
+
+L’interface suit la langue de l’interface du navigateur. Les textes en anglais, chinois simplifié, chinois traditionnel, japonais, coréen, allemand, français, espagnol, portugais du Brésil et russe se trouvent dans `_locales/` ; toute autre langue de navigateur revient à l’anglais. Les textes des pages de l’extension sont résolus via `i18n.js` et ne sont jamais codés en dur.
+
 ## Développement
 
 | Fichier | Rôle |
@@ -37,6 +41,7 @@ Extension Chrome Manifest V3 facultative pour Yin-Panel. Elle récupère les oct
 | `config.js` | Normalisation de l'URL des nouveaux onglets et cible par défaut |
 | `newtab.html`, `newtab.js` | Remplacement et redirection des nouveaux onglets |
 | `settings.html`, `settings.css`, `settings.js` | Page d'options et fenêtre contextuelle de la barre d'outils |
+| `i18n.js`, `_locales/` | Assistant partagé de localisation de page et catalogues de messages par langue |
 | `manifest.json` | Autorisations, points d'entrée, remplacement des nouveaux onglets et enregistrement du script de contenu |
 
 Il n'y a aucune étape de build ; chaque fichier est chargé directement. Vérifiez le JavaScript et le manifeste avec :
@@ -47,6 +52,7 @@ node --check content-script.js
 node --check config.js
 node --check newtab.js
 node --check settings.js
+node --check i18n.js
 ```
 
 [AGENTS.md](../../AGENTS.md) documente les invariants de comportement, le placement des tests et les règles de sécurité. Les tests d'acceptation au niveau du navigateur se trouvent dans le [dépôt E2E](https://github.com/yinorg/yin-panel-e2e) ; le service Core se trouve dans [yinorg/Yin-Panel](https://github.com/yinorg/Yin-Panel).

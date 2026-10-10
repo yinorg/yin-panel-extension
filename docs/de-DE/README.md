@@ -28,6 +28,10 @@ Eine optionale Chrome-Erweiterung nach Manifest V3 für Yin-Panel. Sie ruft echt
 - Wenn diese fehlschlagen, prüft er öffentliche Favicon-Dienste und erstellt für jeden nutzbaren Dienst einen Pool aus acht Anfragen.
 - Fehlgeschlagene Abfragen werden an Yin-Panel zurückgegeben, das seine eigenen Favicon- und Textsymbol-Ersatzlösungen anwendet; die Erweiterung erzeugt kein separates Ersatzsymbol.
 
+## Sprachen
+
+Die Oberfläche folgt der UI-Sprache des Browsers. Die Texte für Englisch, vereinfachtes Chinesisch, traditionelles Chinesisch, Japanisch, Koreanisch, Deutsch, Französisch, Spanisch, brasilianisches Portugiesisch und Russisch liegen in `_locales/`; jede andere Browsersprache fällt auf Englisch zurück. Texte der Erweiterungsseiten werden über `i18n.js` aufgelöst und nie fest codiert.
+
 ## Entwicklung
 
 | Datei | Rolle |
@@ -37,6 +41,7 @@ Eine optionale Chrome-Erweiterung nach Manifest V3 für Yin-Panel. Sie ruft echt
 | `config.js` | Normalisierung der New-Tab-URL und das Standardziel |
 | `newtab.html`, `newtab.js` | New-Tab-Überschreibung und Weiterleitung |
 | `settings.html`, `settings.css`, `settings.js` | Optionsseite und Symbolleisten-Pop-up |
+| `i18n.js`, `_locales/` | Gemeinsamer Helfer zur Seitenlokalisierung und Sprachkataloge |
 | `manifest.json` | Berechtigungen, Einstiegspunkte, New-Tab-Überschreibung und Registrierung des Content-Skripts |
 
 Es gibt keinen Build-Schritt; jede Datei wird direkt geladen. Prüfen Sie das JavaScript und das Manifest mit:
@@ -47,6 +52,7 @@ node --check content-script.js
 node --check config.js
 node --check newtab.js
 node --check settings.js
+node --check i18n.js
 ```
 
 [AGENTS.md](../../AGENTS.md) dokumentiert die Verhaltensinvarianten, die Testablage und die Sicherheitsregeln. Browserbasierte Abnahmetests liegen im [E2E-Repository](https://github.com/yinorg/yin-panel-e2e); der Core-Dienst liegt in [yinorg/Yin-Panel](https://github.com/yinorg/Yin-Panel).

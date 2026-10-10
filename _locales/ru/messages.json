@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Помощник для браузера для Yin-Panel: получение значков при импорте закладок и перенаправление новой вкладки."
+  },
+  "actionTitle": {
+    "message": "Yin-Panel: настройки новой вкладки"
+  },
+  "newTabPageTitle": {
+    "message": "Новая вкладка"
+  },
+  "settingsPageTitle": {
+    "message": "Настройки новой вкладки"
+  },
+  "settingsHeading": {
+    "message": "Настройки новой вкладки"
+  },
+  "settingsDescription": {
+    "message": "Укажите адрес, который будет открываться при создании новой вкладки."
+  },
+  "newTabUrlLabel": {
+    "message": "Адрес новой вкладки"
+  },
+  "saveButton": {
+    "message": "Сохранить"
+  },
+  "resetButton": {
+    "message": "Сбросить по умолчанию"
+  },
+  "statusInvalidUrl": {
+    "message": "Введите корректный адрес http или https."
+  },
+  "statusSaved": {
+    "message": "Сохранено."
+  },
+  "statusSaveFailed": {
+    "message": "Не удалось сохранить. Повторите попытку позже."
+  },
+  "statusResetDone": {
+    "message": "Адрес по умолчанию восстановлен."
+  }
+}

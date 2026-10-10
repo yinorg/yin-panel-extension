@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Yin-Panel のブックマークインポート用アイコン取得と新しいタブのリダイレクトを提供するブラウザー拡張機能です。"
+  },
+  "actionTitle": {
+    "message": "Yin-Panel 新しいタブの設定"
+  },
+  "newTabPageTitle": {
+    "message": "新しいタブ"
+  },
+  "settingsPageTitle": {
+    "message": "新しいタブの設定"
+  },
+  "settingsHeading": {
+    "message": "新しいタブの設定"
+  },
+  "settingsDescription": {
+    "message": "新しいタブを開いたときに表示するアドレスを設定します。"
+  },
+  "newTabUrlLabel": {
+    "message": "新しいタブのアドレス"
+  },
+  "saveButton": {
+    "message": "保存"
+  },
+  "resetButton": {
+    "message": "既定値に戻す"
+  },
+  "statusInvalidUrl": {
+    "message": "有効な http または https のアドレスを入力してください。"
+  },
+  "statusSaved": {
+    "message": "保存しました。"
+  },
+  "statusSaveFailed": {
+    "message": "保存できませんでした。しばらくしてからもう一度お試しください。"
+  },
+  "statusResetDone": {
+    "message": "既定のアドレスに戻しました。"
+  }
+}

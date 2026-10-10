@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Browser-Helfer für Yin-Panel: Lesezeichen-Import mit Favicon-Abruf und Weiterleitung neuer Tabs."
+  },
+  "actionTitle": {
+    "message": "Yin-Panel: Einstellungen für neue Tabs"
+  },
+  "newTabPageTitle": {
+    "message": "Neuer Tab"
+  },
+  "settingsPageTitle": {
+    "message": "Einstellungen für neue Tabs"
+  },
+  "settingsHeading": {
+    "message": "Einstellungen für neue Tabs"
+  },
+  "settingsDescription": {
+    "message": "Legen Sie die Adresse fest, die beim Öffnen eines neuen Tabs geöffnet wird."
+  },
+  "newTabUrlLabel": {
+    "message": "Adresse für neue Tabs"
+  },
+  "saveButton": {
+    "message": "Speichern"
+  },
+  "resetButton": {
+    "message": "Auf Standard zurücksetzen"
+  },
+  "statusInvalidUrl": {
+    "message": "Geben Sie eine gültige http- oder https-Adresse ein."
+  },
+  "statusSaved": {
+    "message": "Gespeichert."
+  },
+  "statusSaveFailed": {
+    "message": "Speichern fehlgeschlagen. Bitte später erneut versuchen."
+  },
+  "statusResetDone": {
+    "message": "Standardadresse wiederhergestellt."
+  }
+}

@@ -28,6 +28,10 @@ Uma extensão opcional do Chrome Manifest V3 para o Yin-Panel. Ela obtém os byt
 - Quando estas falham, ele sonda serviços públicos de favicon, criando um pool de oito requisições para cada serviço utilizável.
 - As buscas malsucedidas são devolvidas ao Yin-Panel, que aplica seus próprios favicons e ícones de texto como alternativa; a extensão não gera um ícone de fallback separado.
 
+## Idiomas
+
+A interface segue o idioma da interface do navegador. Os textos em inglês, chinês simplificado, chinês tradicional, japonês, coreano, alemão, francês, espanhol, português do Brasil e russo ficam em `_locales/`; qualquer outro idioma do navegador recorre ao inglês. Os textos das páginas da extensão são resolvidos por meio do `i18n.js` e nunca são codificados de forma fixa.
+
 ## Desenvolvimento
 
 | Arquivo | Função |
@@ -37,6 +41,7 @@ Uma extensão opcional do Chrome Manifest V3 para o Yin-Panel. Ela obtém os byt
 | `config.js` | Normalização da URL de novas abas e o destino padrão |
 | `newtab.html`, `newtab.js` | Substituição e redirecionamento de novas abas |
 | `settings.html`, `settings.css`, `settings.js` | Página de opções e popup da barra de ferramentas |
+| `i18n.js`, `_locales/` | Assistente compartilhado de localização de página e catálogos de mensagens por idioma |
 | `manifest.json` | Permissões, pontos de entrada, substituição de novas abas e registro do content script |
 
 Não há etapa de build; todos os arquivos são carregados diretamente. Verifique o JavaScript e o manifest com:
@@ -47,6 +52,7 @@ node --check content-script.js
 node --check config.js
 node --check newtab.js
 node --check settings.js
+node --check i18n.js
 ```
 
 O [AGENTS.md](../../AGENTS.md) documenta as invariantes de comportamento, o posicionamento de testes e as regras de segurança. Os testes de aceitação no nível do navegador ficam no [repositório de E2E](https://github.com/yinorg/yin-panel-e2e); o serviço Core fica em [yinorg/Yin-Panel](https://github.com/yinorg/Yin-Panel).

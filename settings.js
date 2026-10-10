@@ -1,3 +1,5 @@
+localizeDocument()
+
 const input = document.querySelector('#new-tab-url')
 const status = document.querySelector('#status')
 
@@ -19,15 +21,15 @@ async function saveUrl() {
   const url = normalizeNewTabUrl(input.value)
   if (!url) {
     input.value = DEFAULT_NEW_TAB_URL
-    setStatus('请输入有效的 http 或 https 地址。', true)
+    setStatus(t('statusInvalidUrl'), true)
     return
   }
   try {
     await chrome.storage.sync.set({ [NEW_TAB_STORAGE_KEY]: url })
     input.value = url
-    setStatus('已保存。')
+    setStatus(t('statusSaved'))
   } catch (_) {
-    setStatus('保存失败，请稍后重试。', true)
+    setStatus(t('statusSaveFailed'), true)
   }
 }
 
@@ -35,9 +37,9 @@ async function resetUrl() {
   try {
     await chrome.storage.sync.set({ [NEW_TAB_STORAGE_KEY]: DEFAULT_NEW_TAB_URL })
     input.value = DEFAULT_NEW_TAB_URL
-    setStatus('已恢复默认地址。')
+    setStatus(t('statusResetDone'))
   } catch (_) {
-    setStatus('保存失败，请稍后重试。', true)
+    setStatus(t('statusSaveFailed'), true)
   }
 }
 

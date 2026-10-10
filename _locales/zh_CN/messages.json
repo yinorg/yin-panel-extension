@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Yin-Panel 的浏览器助手扩展，用于书签导入图标获取和新标签页重定向。"
+  },
+  "actionTitle": {
+    "message": "Yin-Panel 新标签页设置"
+  },
+  "newTabPageTitle": {
+    "message": "新标签页"
+  },
+  "settingsPageTitle": {
+    "message": "新标签页设置"
+  },
+  "settingsHeading": {
+    "message": "新标签页设置"
+  },
+  "settingsDescription": {
+    "message": "设置打开新标签页时访问的地址。"
+  },
+  "newTabUrlLabel": {
+    "message": "新标签页地址"
+  },
+  "saveButton": {
+    "message": "保存"
+  },
+  "resetButton": {
+    "message": "恢复默认"
+  },
+  "statusInvalidUrl": {
+    "message": "请输入有效的 http 或 https 地址。"
+  },
+  "statusSaved": {
+    "message": "已保存。"
+  },
+  "statusSaveFailed": {
+    "message": "保存失败，请稍后重试。"
+  },
+  "statusResetDone": {
+    "message": "已恢复默认地址。"
+  }
+}

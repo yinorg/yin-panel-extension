@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Assistente de navegador para o Yin-Panel: importação de favoritos com obtenção de favicons e redirecionamento de novas abas."
+  },
+  "actionTitle": {
+    "message": "Yin-Panel: configurações de novas abas"
+  },
+  "newTabPageTitle": {
+    "message": "Nova aba"
+  },
+  "settingsPageTitle": {
+    "message": "Configurações de novas abas"
+  },
+  "settingsHeading": {
+    "message": "Configurações de novas abas"
+  },
+  "settingsDescription": {
+    "message": "Defina o endereço que será aberto ao criar uma nova aba."
+  },
+  "newTabUrlLabel": {
+    "message": "Endereço de nova aba"
+  },
+  "saveButton": {
+    "message": "Salvar"
+  },
+  "resetButton": {
+    "message": "Restaurar padrão"
+  },
+  "statusInvalidUrl": {
+    "message": "Informe um endereço http ou https válido."
+  },
+  "statusSaved": {
+    "message": "Salvo."
+  },
+  "statusSaveFailed": {
+    "message": "Falha ao salvar. Tente novamente mais tarde."
+  },
+  "statusResetDone": {
+    "message": "Endereço padrão restaurado."
+  }
+}

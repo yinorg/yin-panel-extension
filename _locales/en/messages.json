@@ -1,0 +1,45 @@
+{
+  "extensionDescription": {
+    "message": "Browser helper for Yin-Panel bookmark imports, favicon retrieval, and new-tab redirection.",
+    "description": "Extension description shown in the browser and store listings."
+  },
+  "actionTitle": {
+    "message": "Yin-Panel new-tab settings",
+    "description": "Tooltip for the toolbar action."
+  },
+  "newTabPageTitle": {
+    "message": "New tab",
+    "description": "Title of the new-tab override page."
+  },
+  "settingsPageTitle": {
+    "message": "New tab settings",
+    "description": "Window title of the options page and toolbar popup."
+  },
+  "settingsHeading": {
+    "message": "New tab settings"
+  },
+  "settingsDescription": {
+    "message": "Set the address to open when a new tab is created."
+  },
+  "newTabUrlLabel": {
+    "message": "New tab address"
+  },
+  "saveButton": {
+    "message": "Save"
+  },
+  "resetButton": {
+    "message": "Reset to default"
+  },
+  "statusInvalidUrl": {
+    "message": "Enter a valid http or https address."
+  },
+  "statusSaved": {
+    "message": "Saved."
+  },
+  "statusSaveFailed": {
+    "message": "Could not save. Please try again later."
+  },
+  "statusResetDone": {
+    "message": "Default address restored."
+  }
+}

@@ -28,6 +28,10 @@ Yin-Panel Helper 是 Yin-Panel 的可选 Chrome Manifest V3 扩展。当常规�
 - 当这些尝试都失败时，它会探测公共图标服务，并为每个可用服务创建一个包含八个请求的请求池。
 - 失败的查询会返回给 Yin-Panel，由后者应用自身的图标与文字图标回退方案；扩展不会另外生成回退图标。
 
+## 多语言
+
+界面语言跟随浏览器界面语言。英语、简体中文、繁体中文、日语、韩语、德语、法语、西班牙语、巴西葡萄牙语和俄语的文案存放在 `_locales/` 中；其他浏览器语言会回退到英语。扩展页面文案通过 `i18n.js` 解析，绝不硬编码。
+
 ## 开发
 
 | 文件 | 职责 |
@@ -37,6 +41,7 @@ Yin-Panel Helper 是 Yin-Panel 的可选 Chrome Manifest V3 扩展。当常规�
 | `config.js` | 新标签页 URL 规范化及默认目标 |
 | `newtab.html`, `newtab.js` | 新标签页覆盖与重定向 |
 | `settings.html`, `settings.css`, `settings.js` | 选项页与工具栏弹窗 |
+| `i18n.js`, `_locales/` | 共享页面本地化辅助脚本与各语言消息目录 |
 | `manifest.json` | 权限、入口、新标签页覆盖以及内容脚本注册 |
 
 本项目没有构建步骤，所有文件都会被直接加载。可使用以下命令检查 JavaScript 与 manifest：
@@ -47,6 +52,7 @@ node --check content-script.js
 node --check config.js
 node --check newtab.js
 node --check settings.js
+node --check i18n.js
 ```
 
 [AGENTS.md](../../AGENTS.md) 记录了行为不变量、测试放置和安全规则。浏览器级验收测试位于 [E2E 仓库](https://github.com/yinorg/yin-panel-e2e)；Core 服务位于 [yinorg/Yin-Panel](https://github.com/yinorg/Yin-Panel)。

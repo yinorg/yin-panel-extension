@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Yin-Panel 북마크 가져오기용 아이콘 가져오기와 새 탭 리디렉션을 제공하는 브라우저 도우미입니다."
+  },
+  "actionTitle": {
+    "message": "Yin-Panel 새 탭 설정"
+  },
+  "newTabPageTitle": {
+    "message": "새 탭"
+  },
+  "settingsPageTitle": {
+    "message": "새 탭 설정"
+  },
+  "settingsHeading": {
+    "message": "새 탭 설정"
+  },
+  "settingsDescription": {
+    "message": "새 탭을 열 때 이동할 주소를 설정합니다."
+  },
+  "newTabUrlLabel": {
+    "message": "새 탭 주소"
+  },
+  "saveButton": {
+    "message": "저장"
+  },
+  "resetButton": {
+    "message": "기본값으로 복원"
+  },
+  "statusInvalidUrl": {
+    "message": "유효한 http 또는 https 주소를 입력하세요."
+  },
+  "statusSaved": {
+    "message": "저장했습니다."
+  },
+  "statusSaveFailed": {
+    "message": "저장하지 못했습니다. 잠시 후 다시 시도하세요."
+  },
+  "statusResetDone": {
+    "message": "기본 주소로 복원했습니다."
+  }
+}

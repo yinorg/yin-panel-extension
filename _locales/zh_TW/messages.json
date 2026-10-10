@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Yin-Panel 的瀏覽器擴充功能，用於書籤匯入圖示擷取與新分頁重新導向。"
+  },
+  "actionTitle": {
+    "message": "Yin-Panel 新分頁設定"
+  },
+  "newTabPageTitle": {
+    "message": "新分頁"
+  },
+  "settingsPageTitle": {
+    "message": "新分頁設定"
+  },
+  "settingsHeading": {
+    "message": "新分頁設定"
+  },
+  "settingsDescription": {
+    "message": "設定開啟新分頁時要前往的網址。"
+  },
+  "newTabUrlLabel": {
+    "message": "新分頁網址"
+  },
+  "saveButton": {
+    "message": "儲存"
+  },
+  "resetButton": {
+    "message": "還原預設"
+  },
+  "statusInvalidUrl": {
+    "message": "請輸入有效的 http 或 https 網址。"
+  },
+  "statusSaved": {
+    "message": "已儲存。"
+  },
+  "statusSaveFailed": {
+    "message": "儲存失敗，請稍後再試。"
+  },
+  "statusResetDone": {
+    "message": "已還原預設網址。"
+  }
+}

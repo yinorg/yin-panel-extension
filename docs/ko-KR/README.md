@@ -28,6 +28,10 @@ Yin-Panel을 위한 선택적 Chrome Manifest V3 확장 프로그램입니다. �
 - 이마저 실패하면 공개 favicon 서비스를 탐색하며, 사용할 수 있는 각 서비스에 대해 8개 요청 풀을 만듭니다.
 - 실패한 조회는 Yin-Panel로 반환되고, Yin-Panel이 자체 favicon과 텍스트 아이콘 대체 기능을 적용합니다. 확장 프로그램은 별도의 대체 아이콘을 생성하지 않습니다.
 
+## 언어
+
+인터페이스는 브라우저 UI 언어를 따릅니다. 영어, 중국어 간체, 중국어 번체, 일본어, 한국어, 독일어, 프랑스어, 스페인어, 브라질 포르투갈어, 러시아어 문구는 `_locales/`에 있으며, 그 밖의 브라우저 언어는 영어로 대체됩니다. 확장 프로그램 페이지 문구는 `i18n.js`를 통해 처리되며 하드코딩되지 않습니다.
+
 ## 개발
 
 | 파일 | 역할 |
@@ -37,6 +41,7 @@ Yin-Panel을 위한 선택적 Chrome Manifest V3 확장 프로그램입니다. �
 | `config.js` | 새 탭 URL 정규화와 기본 대상 |
 | `newtab.html`, `newtab.js` | 새 탭 재정의와 리디렉션 |
 | `settings.html`, `settings.css`, `settings.js` | 옵션 페이지와 도구 모음 팝업 |
+| `i18n.js`, `_locales/` | 공용 페이지 현지화 도우미와 언어별 메시지 카탈로그 |
 | `manifest.json` | 권한, 진입점, 새 탭 재정의, 콘텐츠 스크립트 등록 |
 
 빌드 단계는 없으며 모든 파일을 직접 로드합니다. 다음으로 JavaScript와 매니페스트를 검사합니다.
@@ -47,6 +52,7 @@ node --check content-script.js
 node --check config.js
 node --check newtab.js
 node --check settings.js
+node --check i18n.js
 ```
 
 [AGENTS.md](../../AGENTS.md)는 동작 불변 규칙, 테스트 배치, 안전 규칙을 문서화합니다. 브라우저 수준 인수 테스트는 [E2E 저장소](https://github.com/yinorg/yin-panel-e2e)에 있으며, Core 서비스는 [yinorg/Yin-Panel](https://github.com/yinorg/Yin-Panel)에 있습니다.

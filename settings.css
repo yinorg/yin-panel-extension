@@ -26,7 +26,7 @@ input { width: 100%; padding: 10px 12px; border: 1px solid #cbd5e1; border-radiu
 input:focus { outline: 2px solid #93c5fd; outline-offset: 1px; }
 .status { min-height: 20px; margin: 8px 0 16px; color: #2563eb; font-size: 13px; }
 .status.error { color: #dc2626; }
-.actions { display: flex; gap: 8px; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
 button { padding: 9px 16px; border: 0; border-radius: 6px; background: #2563eb; color: #fff; cursor: pointer; font: inherit; }
 button.secondary { background: #e2e8f0; color: #334155; }
 

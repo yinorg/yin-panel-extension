@@ -28,6 +28,10 @@ Extensión opcional de Chrome con Manifest V3 para Yin-Panel. Obtiene los bytes 
 - Cuando estas fallan, sondea servicios públicos de favicon y crea un grupo de ocho peticiones por cada servicio utilizable.
 - Las búsquedas fallidas se devuelven a Yin-Panel, que aplica sus propias alternativas de favicon e iconos de texto; la extensión no genera un icono de reserva independiente.
 
+## Idiomas
+
+La interfaz sigue el idioma de la interfaz del navegador. Los textos en inglés, chino simplificado, chino tradicional, japonés, coreano, alemán, francés, español, portugués de Brasil y ruso se encuentran en `_locales/`; cualquier otro idioma del navegador recurre al inglés. Los textos de las páginas de la extensión se resuelven mediante `i18n.js` y nunca están codificados de forma fija.
+
 ## Desarrollo
 
 | Archivo | Función |
@@ -37,6 +41,7 @@ Extensión opcional de Chrome con Manifest V3 para Yin-Panel. Obtiene los bytes 
 | `config.js` | Normalización de la URL de nueva pestaña y destino predeterminado |
 | `newtab.html`, `newtab.js` | Anulación de la nueva pestaña y redirección |
 | `settings.html`, `settings.css`, `settings.js` | Página de opciones y ventana emergente de la barra de herramientas |
+| `i18n.js`, `_locales/` | Asistente compartido de localización de página y catálogos de mensajes por idioma |
 | `manifest.json` | Permisos, puntos de entrada, anulación de la nueva pestaña y registro del script de contenido |
 
 No hay paso de compilación; todos los archivos se cargan directamente. Compruebe el JavaScript y el manifiesto con:
@@ -47,6 +52,7 @@ node --check content-script.js
 node --check config.js
 node --check newtab.js
 node --check settings.js
+node --check i18n.js
 ```
 
 [AGENTS.md](../../AGENTS.md) documenta las invariantes de comportamiento, la ubicación de las pruebas y las reglas de seguridad. Las pruebas de aceptación a nivel de navegador viven en el [repositorio de E2E](https://github.com/yinorg/yin-panel-e2e); el servicio Core vive en [yinorg/Yin-Panel](https://github.com/yinorg/Yin-Panel).

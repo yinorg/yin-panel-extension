@@ -1,24 +1,25 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en" data-i18n-document-title="settingsPageTitle">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>新标签页设置</title>
+  <title>New tab settings</title>
   <link rel="stylesheet" href="settings.css">
 </head>
 <body>
   <main class="settings">
-    <h1>新标签页设置</h1>
-    <p class="description">设置打开新标签页时访问的地址。</p>
-    <label for="new-tab-url">新标签页地址</label>
+    <h1 data-i18n="settingsHeading">New tab settings</h1>
+    <p class="description" data-i18n="settingsDescription">Set the address to open when a new tab is created.</p>
+    <label for="new-tab-url" data-i18n="newTabUrlLabel">New tab address</label>
     <input id="new-tab-url" type="url" autocomplete="url" spellcheck="false" placeholder="https://panel.yiniot.com">
     <p id="status" class="status" role="status" aria-live="polite"></p>
     <div class="actions">
-      <button id="save" type="button">保存</button>
-      <button id="reset" class="secondary" type="button">恢复默认</button>
+      <button id="save" type="button" data-i18n="saveButton">Save</button>
+      <button id="reset" class="secondary" type="button" data-i18n="resetButton">Reset to default</button>
     </div>
   </main>
   <script src="config.js"></script>
+  <script src="i18n.js"></script>
   <script src="settings.js"></script>
 </body>
 </html>

@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Asistente de navegador para Yin-Panel: importación de marcadores con obtención de favicons y redirección de nueva pestaña."
+  },
+  "actionTitle": {
+    "message": "Yin-Panel: ajustes de nueva pestaña"
+  },
+  "newTabPageTitle": {
+    "message": "Nueva pestaña"
+  },
+  "settingsPageTitle": {
+    "message": "Ajustes de nueva pestaña"
+  },
+  "settingsHeading": {
+    "message": "Ajustes de nueva pestaña"
+  },
+  "settingsDescription": {
+    "message": "Define la dirección que se abrirá al crear una nueva pestaña."
+  },
+  "newTabUrlLabel": {
+    "message": "Dirección de nueva pestaña"
+  },
+  "saveButton": {
+    "message": "Guardar"
+  },
+  "resetButton": {
+    "message": "Restaurar predeterminada"
+  },
+  "statusInvalidUrl": {
+    "message": "Introduce una dirección http o https válida."
+  },
+  "statusSaved": {
+    "message": "Guardado."
+  },
+  "statusSaveFailed": {
+    "message": "No se pudo guardar. Inténtalo de nuevo más tarde."
+  },
+  "statusResetDone": {
+    "message": "Se restauró la dirección predeterminada."
+  }
+}

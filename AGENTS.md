@@ -7,6 +7,7 @@ This repository owns the standalone Yin-Panel Manifest V3 browser extension. Kee
 - `service-worker.js` handles extension messages, site favicon retrieval, public favicon fallbacks, and service-worker lifecycle behavior.
 - `newtab.html`, `newtab.js`, and `config.js` implement the custom new-tab redirect and URL validation.
 - `settings.html`, `settings.css`, and `settings.js` provide the extension options page for the configured new-tab URL.
+- `i18n.js` and `_locales/` provide the shared page-localisation helper and the per-language UI message catalogues.
 - `content-script.js` implements the page-side message bridge used by Yin-Panel.
 - `manifest.json` defines permissions, extension entrypoints, the new-tab override, and content-script registration.
 
@@ -19,6 +20,13 @@ Do not modify the Core or E2E repositories from this worktree. Changes to the Co
 - New tabs always redirect to the stored `newTabUrl`; invalid or missing values must fall back to `https://panel.yiniot.com`.
 - Accept only `http` and `https` URLs for the new-tab target.
 - Preserve the existing Yin-Panel message source checks and request/response behavior when changing favicon retrieval or page communication.
+
+## Localization
+
+- Keep all user-facing interface text out of HTML and JavaScript: strings live in `_locales/<locale>/messages.json` and are resolved through `i18n.js`.
+- The interface follows the browser UI language, with English (`default_locale`) as the fallback. Keep the catalogue set stable: `en`, `zh_CN`, `zh_TW`, `ja`, `ko`, `de`, `fr`, `es`, `pt_BR`, and `ru`.
+- Keep every locale key-complete; a missing key silently falls back to English. `manifest.json` uses `__MSG_*__` references that must exist in the default locale.
+- Do not localise the extension `name`; the brand stays `Yin-Panel Helper` across locales.
 
 ## Test Placement
 
@@ -33,6 +41,7 @@ Do not modify the Core or E2E repositories from this worktree. Changes to the Co
 - Before changes, run `git status --short` and preserve unrelated worktree changes.
 - After JavaScript changes, run `node --check` for every changed JavaScript file.
 - After `manifest.json` changes, parse it as JSON and verify the manifest remains loadable.
+- After `_locales` changes, parse every `messages.json` and confirm all locales share the same key set.
 - Run `git diff --check` before committing and report every skipped or failed check.
 - For browser behavior changes, run the focused test in `$YIN_PANEL_E2E_DIR` when the configured service, extension path, credentials, and headed Chromium environment are available. Otherwise report the exact missing prerequisite.
 

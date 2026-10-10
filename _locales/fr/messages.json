@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Assistant de navigateur pour Yin-Panel : import de signets avec récupération des favicons et redirection des nouveaux onglets."
+  },
+  "actionTitle": {
+    "message": "Yin-Panel : paramètres des nouveaux onglets"
+  },
+  "newTabPageTitle": {
+    "message": "Nouvel onglet"
+  },
+  "settingsPageTitle": {
+    "message": "Paramètres des nouveaux onglets"
+  },
+  "settingsHeading": {
+    "message": "Paramètres des nouveaux onglets"
+  },
+  "settingsDescription": {
+    "message": "Définissez l’adresse à ouvrir lors de la création d’un nouvel onglet."
+  },
+  "newTabUrlLabel": {
+    "message": "Adresse des nouveaux onglets"
+  },
+  "saveButton": {
+    "message": "Enregistrer"
+  },
+  "resetButton": {
+    "message": "Rétablir la valeur par défaut"
+  },
+  "statusInvalidUrl": {
+    "message": "Saisissez une adresse http ou https valide."
+  },
+  "statusSaved": {
+    "message": "Enregistré."
+  },
+  "statusSaveFailed": {
+    "message": "Échec de l’enregistrement. Veuillez réessayer plus tard."
+  },
+  "statusResetDone": {
+    "message": "Adresse par défaut rétablie."
+  }
+}

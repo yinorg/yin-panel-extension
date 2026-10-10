@@ -28,6 +28,10 @@ An optional Chrome Manifest V3 extension for Yin-Panel. It retrieves real site f
 - When those fail, it probes public favicon services, creating an eight-request pool for each usable service.
 - Failed lookups are returned to Yin-Panel, which applies its own favicon and text-icon fallbacks; the extension does not generate a separate fallback icon.
 
+## Languages
+
+The interface follows the browser's UI language. English, Simplified Chinese, Traditional Chinese, Japanese, Korean, German, French, Spanish, Brazilian Portuguese, and Russian strings live in `_locales/`; any other browser language falls back to English. Extension-page text is resolved through `i18n.js` and is never hard-coded.
+
 ## Development
 
 | File | Role |
@@ -37,6 +41,7 @@ An optional Chrome Manifest V3 extension for Yin-Panel. It retrieves real site f
 | `config.js` | New-tab URL normalisation and the default target |
 | `newtab.html`, `newtab.js` | New-tab override and redirect |
 | `settings.html`, `settings.css`, `settings.js` | Options page and toolbar popup |
+| `i18n.js`, `_locales/` | Shared page-localisation helper and per-language message catalogues |
 | `manifest.json` | Permissions, entrypoints, new-tab override, and content-script registration |
 
 There is no build step; every file is loaded directly. Check the JavaScript and the manifest with:
@@ -47,6 +52,7 @@ node --check content-script.js
 node --check config.js
 node --check newtab.js
 node --check settings.js
+node --check i18n.js
 ```
 
 [AGENTS.md](./AGENTS.md) documents the behaviour invariants, test placement, and safety rules. Browser-level acceptance tests live in the [E2E repository](https://github.com/yinorg/yin-panel-e2e); the Core service lives in [yinorg/Yin-Panel](https://github.com/yinorg/Yin-Panel).
