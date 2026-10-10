@@ -1,19 +1,55 @@
 # Yin-Panel Helper
 
-This optional Chrome Manifest V3 extension helps Yin-Panel import bookmarks by retrieving real site favicon bytes when normal browser requests are blocked by CORS restrictions. It also supports public favicon fallbacks and a custom new-tab redirect.
+**English** | [简体中文](docs/zh-CN/README.md) | [繁體中文](docs/zh-TW/README.md) | [日本語](docs/ja-JP/README.md) | [한국어](docs/ko-KR/README.md) | [Deutsch](docs/de-DE/README.md) | [Français](docs/fr-FR/README.md) | [Español](docs/es-ES/README.md) | [Português (Brasil)](docs/pt-BR/README.md) | [Русский](docs/ru-RU/README.md)
+
+An optional Chrome Manifest V3 extension for Yin-Panel. It retrieves real site favicon bytes for bookmark imports when normal browser requests are blocked by CORS, falls back to public favicon services, and adds a configurable new-tab redirect. Yin-Panel keeps working without it by using its own server-side favicon and text-icon fallbacks.
+
+## Install
 
 1. Open `chrome://extensions`.
 2. Enable Developer mode.
 3. Choose **Load unpacked** and select this directory.
 4. Reload Yin-Panel before starting a bookmark import.
 
-The extension only responds to messages marked with the `yin-panel` source. Yin-Panel continues to work without it by using the server-side favicon fallback.
+## Permissions
 
-The only broad permission is host access to fetch favicon data from bookmark sites. The extension does not request camera, microphone, location, notification, or device permissions.
+- `storage` — stores the new-tab target URL.
+- `host_permissions: ["<all_urls>"]` — the extension requests favicon data directly from bookmark sites.
+- No camera, microphone, location, notification, or device permissions are requested.
 
-The extension also provides a custom new-tab redirect. Open the toolbar popup or the extension's Options page to set the target URL. The default target is `https://panel.yiniot.com`; only `http` and `https` URLs are accepted.
+## New-tab redirect
 
-Icon requests first follow the site's standard favicon declarations and common root paths. If those fail, the extension probes all public favicon services and creates an eight-request pool for each usable service. Failed requests are dynamically distributed across those pools, and each request uses one public service. Failed requests are returned to Yin-Panel for its normal favicon and text-icon fallbacks; the extension does not generate a separate fallback icon.
+`chrome_url_overrides` sends every new tab to `newtab.html`, which immediately redirects to the stored target. The default is `https://panel.yiniot.com`, and only `http` and `https` URLs are accepted; invalid or missing values fall back to the default. Set the target from the toolbar popup or the options page.
+
+## Favicon retrieval
+
+- The content script answers only messages marked with `source: 'yin-panel'`, and supports the `ping` and `fetch-icons` message types.
+- For each page the service worker first follows the site's own icon declarations (`rel="icon"`, `apple-touch-icon`, `mask-icon`), then common root favicon paths.
+- When those fail, it probes public favicon services, creating an eight-request pool for each usable service.
+- Failed lookups are returned to Yin-Panel, which applies its own favicon and text-icon fallbacks; the extension does not generate a separate fallback icon.
+
+## Development
+
+| File | Role |
+| --- | --- |
+| `service-worker.js` | Extension messages, site favicon retrieval, and public fallbacks |
+| `content-script.js` | Page-side message bridge used by Yin-Panel |
+| `config.js` | New-tab URL normalisation and the default target |
+| `newtab.html`, `newtab.js` | New-tab override and redirect |
+| `settings.html`, `settings.css`, `settings.js` | Options page and toolbar popup |
+| `manifest.json` | Permissions, entrypoints, new-tab override, and content-script registration |
+
+There is no build step; every file is loaded directly. Check the JavaScript and the manifest with:
+
+```bash
+node --check service-worker.js
+node --check content-script.js
+node --check config.js
+node --check newtab.js
+node --check settings.js
+```
+
+[AGENTS.md](./AGENTS.md) documents the behaviour invariants, test placement, and safety rules. Browser-level acceptance tests live in the [E2E repository](https://github.com/yinorg/yin-panel-e2e); the Core service lives in [yinorg/Yin-Panel](https://github.com/yinorg/Yin-Panel).
 
 ## Automatic Chrome Web Store publishing
 
