@@ -1,6 +1,6 @@
 # Yin-Panel Helper
 
-[English](../../README.md) | [简体中文](../zh-CN/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | **한국어** | [Deutsch](../de-DE/README.md) | [Français](../fr-FR/README.md) | [Español](../es-ES/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md)
+[English](../../README.md) | [简体中文](../zh-CN/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | **한국어** | [Deutsch](../de-DE/README.md) | [Français](../fr-FR/README.md) | [Español](../es-ES/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Türkçe](../tr-TR/README.md) | [Polski](../pl-PL/README.md) | [Italiano](../it-IT/README.md) | [Nederlands](../nl-NL/README.md) | [हिन्दी](../hi-IN/README.md) | [ไทย](../th-TH/README.md)
 
 Yin-Panel을 위한 선택적 Chrome Manifest V3 확장 프로그램입니다. 일반 브라우저 요청이 CORS로 차단될 때 북마크 가져오기를 위해 실제 사이트 favicon 바이트를 가져오고, 공개 favicon 서비스로 대체하며, 설정 가능한 새 탭 리디렉션을 추가합니다. 이 확장 프로그램이 없어도 Yin-Panel은 자체 서버 측 favicon과 텍스트 아이콘 대체 기능을 사용해 계속 동작합니다.
 
@@ -30,7 +30,7 @@ Yin-Panel을 위한 선택적 Chrome Manifest V3 확장 프로그램입니다. �
 
 ## 언어
 
-인터페이스는 브라우저 UI 언어를 따릅니다. 영어, 중국어 간체, 중국어 번체, 일본어, 한국어, 독일어, 프랑스어, 스페인어, 브라질 포르투갈어, 러시아어 문구는 `_locales/`에 있으며, 그 밖의 브라우저 언어는 영어로 대체됩니다. 확장 프로그램 페이지 문구는 `i18n.js`를 통해 처리되며 하드코딩되지 않습니다.
+인터페이스는 브라우저 UI 언어를 따릅니다. 영어, 중국어 간체, 중국어 번체, 일본어, 한국어, 독일어, 프랑스어, 스페인어, 브라질 포르투갈어, 러시아어, 인도네시아어, 터키어, 폴란드어, 이탈리아어, 네덜란드어, 힌디어, 태국어 문구는 `_locales/`에 있으며, 그 밖의 브라우저 언어는 영어로 대체됩니다. 확장 프로그램 페이지 문구는 `i18n.js`를 통해 처리되며 하드코딩되지 않습니다.
 
 ## 개발
 

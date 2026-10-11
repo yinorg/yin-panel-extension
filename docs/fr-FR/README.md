@@ -1,6 +1,6 @@
 # Yin-Panel Helper
 
-[English](../../README.md) | [简体中文](../zh-CN/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Deutsch](../de-DE/README.md) | **Français** | [Español](../es-ES/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md)
+[English](../../README.md) | [简体中文](../zh-CN/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Deutsch](../de-DE/README.md) | **Français** | [Español](../es-ES/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Türkçe](../tr-TR/README.md) | [Polski](../pl-PL/README.md) | [Italiano](../it-IT/README.md) | [Nederlands](../nl-NL/README.md) | [हिन्दी](../hi-IN/README.md) | [ไทย](../th-TH/README.md)
 
 Extension Chrome Manifest V3 facultative pour Yin-Panel. Elle récupère les octets réels des favicons des sites pour les imports de signets lorsque les requêtes normales du navigateur sont bloquées par CORS, se rabat sur des services publics de favicons et ajoute une redirection configurable des nouveaux onglets. Yin-Panel continue de fonctionner sans elle grâce à ses propres favicons côté serveur et à ses solutions de repli en icônes textuelles.
 
@@ -30,7 +30,7 @@ Extension Chrome Manifest V3 facultative pour Yin-Panel. Elle récupère les oct
 
 ## Langues
 
-L’interface suit la langue de l’interface du navigateur. Les textes en anglais, chinois simplifié, chinois traditionnel, japonais, coréen, allemand, français, espagnol, portugais du Brésil et russe se trouvent dans `_locales/` ; toute autre langue de navigateur revient à l’anglais. Les textes des pages de l’extension sont résolus via `i18n.js` et ne sont jamais codés en dur.
+L’interface suit la langue de l’interface du navigateur. Les textes en anglais, chinois simplifié, chinois traditionnel, japonais, coréen, allemand, français, espagnol, portugais du Brésil russe, indonésien, turc, polonais, italien, néerlandais, hindi et thaï se trouvent dans `_locales/` ; toute autre langue de navigateur revient à l’anglais. Les textes des pages de l’extension sont résolus via `i18n.js` et ne sont jamais codés en dur.
 
 ## Développement
 

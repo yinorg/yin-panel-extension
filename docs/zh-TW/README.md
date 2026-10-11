@@ -1,6 +1,6 @@
 # Yin-Panel Helper
 
-[English](../../README.md) | [简体中文](../zh-CN/README.md) | **繁體中文** | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Deutsch](../de-DE/README.md) | [Français](../fr-FR/README.md) | [Español](../es-ES/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md)
+[English](../../README.md) | [简体中文](../zh-CN/README.md) | **繁體中文** | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Deutsch](../de-DE/README.md) | [Français](../fr-FR/README.md) | [Español](../es-ES/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Türkçe](../tr-TR/README.md) | [Polski](../pl-PL/README.md) | [Italiano](../it-IT/README.md) | [Nederlands](../nl-NL/README.md) | [हिन्दी](../hi-IN/README.md) | [ไทย](../th-TH/README.md)
 
 Yin-Panel 的選用 Chrome Manifest V3 擴充功能。當一般瀏覽器請求被 CORS 阻擋時，它會為書籤匯入取得真實網站的 favicon 位元組，並在失敗時改用公開 favicon 服務，同時新增可設定的新分頁重新導向。Yin-Panel 即使未安裝此擴充功能仍可運作，會改用自身伺服器端的 favicon 與文字圖示後援方案。
 
@@ -30,7 +30,7 @@ Yin-Panel 的選用 Chrome Manifest V3 擴充功能。當一般瀏覽器請求�
 
 ## 多語言
 
-介面語言會跟隨瀏覽器介面語言。英文、簡體中文、繁體中文、日文、韓文、德文、法文、西班牙文、巴西葡萄牙文與俄文的文案存放於 `_locales/`；其他瀏覽器語言會回退為英文。擴充功能頁面文案透過 `i18n.js` 解析，絕不硬編碼。
+介面語言會跟隨瀏覽器介面語言。英文、簡體中文、繁體中文、日文、韓文、德文、法文、西班牙文、巴西葡萄牙文、俄文、印尼文、土耳其文、波蘭文、義大利文、荷蘭文、印地文與泰文的文案存放於 `_locales/`；其他瀏覽器語言會回退為英文。擴充功能頁面文案透過 `i18n.js` 解析，絕不硬編碼。
 
 ## 開發
 

@@ -1,6 +1,6 @@
 # Yin-Panel Helper
 
-[English](../../README.md) | [简体中文](../zh-CN/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | **Deutsch** | [Français](../fr-FR/README.md) | [Español](../es-ES/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md)
+[English](../../README.md) | [简体中文](../zh-CN/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | **Deutsch** | [Français](../fr-FR/README.md) | [Español](../es-ES/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Türkçe](../tr-TR/README.md) | [Polski](../pl-PL/README.md) | [Italiano](../it-IT/README.md) | [Nederlands](../nl-NL/README.md) | [हिन्दी](../hi-IN/README.md) | [ไทย](../th-TH/README.md)
 
 Eine optionale Chrome-Erweiterung nach Manifest V3 für Yin-Panel. Sie ruft echte Favicon-Bytes von Websites für Lesezeichen-Importe ab, wenn normale Browser-Anfragen durch CORS blockiert werden, weicht auf öffentliche Favicon-Dienste aus und ergänzt eine konfigurierbare Weiterleitung für neue Tabs. Yin-Panel funktioniert auch ohne sie weiter, indem es seine eigenen serverseitigen Favicon- und Textsymbol-Ersatzlösungen verwendet.
 
@@ -30,7 +30,7 @@ Eine optionale Chrome-Erweiterung nach Manifest V3 für Yin-Panel. Sie ruft echt
 
 ## Sprachen
 
-Die Oberfläche folgt der UI-Sprache des Browsers. Die Texte für Englisch, vereinfachtes Chinesisch, traditionelles Chinesisch, Japanisch, Koreanisch, Deutsch, Französisch, Spanisch, brasilianisches Portugiesisch und Russisch liegen in `_locales/`; jede andere Browsersprache fällt auf Englisch zurück. Texte der Erweiterungsseiten werden über `i18n.js` aufgelöst und nie fest codiert.
+Die Oberfläche folgt der UI-Sprache des Browsers. Die Texte für Englisch, vereinfachtes Chinesisch, traditionelles Chinesisch, Japanisch, Koreanisch, Deutsch, Französisch, Spanisch, brasilianisches Portugiesisch Russisch, Indonesisch, Türkisch, Polnisch, Italienisch, Niederländisch, Hindi und Thailändisch liegen in `_locales/`; jede andere Browsersprache fällt auf Englisch zurück. Texte der Erweiterungsseiten werden über `i18n.js` aufgelöst und nie fest codiert.
 
 ## Entwicklung
 

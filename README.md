@@ -1,6 +1,6 @@
 # Yin-Panel Helper
 
-**English** | [简体中文](docs/zh-CN/README.md) | [繁體中文](docs/zh-TW/README.md) | [日本語](docs/ja-JP/README.md) | [한국어](docs/ko-KR/README.md) | [Deutsch](docs/de-DE/README.md) | [Français](docs/fr-FR/README.md) | [Español](docs/es-ES/README.md) | [Português (Brasil)](docs/pt-BR/README.md) | [Русский](docs/ru-RU/README.md)
+**English** | [简体中文](docs/zh-CN/README.md) | [繁體中文](docs/zh-TW/README.md) | [日本語](docs/ja-JP/README.md) | [한국어](docs/ko-KR/README.md) | [Deutsch](docs/de-DE/README.md) | [Français](docs/fr-FR/README.md) | [Español](docs/es-ES/README.md) | [Português (Brasil)](docs/pt-BR/README.md) | [Русский](docs/ru-RU/README.md) | [Bahasa Indonesia](docs/id-ID/README.md) | [Türkçe](docs/tr-TR/README.md) | [Polski](docs/pl-PL/README.md) | [Italiano](docs/it-IT/README.md) | [Nederlands](docs/nl-NL/README.md) | [हिन्दी](docs/hi-IN/README.md) | [ไทย](docs/th-TH/README.md)
 
 An optional Chrome Manifest V3 extension for Yin-Panel. It retrieves real site favicon bytes for bookmark imports when normal browser requests are blocked by CORS, falls back to public favicon services, and adds a configurable new-tab redirect. Yin-Panel keeps working without it by using its own server-side favicon and text-icon fallbacks.
 
@@ -30,7 +30,7 @@ An optional Chrome Manifest V3 extension for Yin-Panel. It retrieves real site f
 
 ## Languages
 
-The interface follows the browser's UI language. English, Simplified Chinese, Traditional Chinese, Japanese, Korean, German, French, Spanish, Brazilian Portuguese, and Russian strings live in `_locales/`; any other browser language falls back to English. Extension-page text is resolved through `i18n.js` and is never hard-coded.
+The interface follows the browser's UI language. English, Simplified Chinese, Traditional Chinese, Japanese, Korean, German, French, Spanish, Brazilian Portuguese, Russian, Indonesian, Turkish, Polish, Italian, Dutch, Hindi, and Thai strings live in `_locales/`; any other browser language falls back to English. Extension-page text is resolved through `i18n.js` and is never hard-coded.
 
 ## Development
 

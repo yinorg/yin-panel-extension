@@ -1,6 +1,6 @@
 # Yin-Panel Helper
 
-[English](../../README.md) | **简体中文** | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Deutsch](../de-DE/README.md) | [Français](../fr-FR/README.md) | [Español](../es-ES/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md)
+[English](../../README.md) | **简体中文** | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Deutsch](../de-DE/README.md) | [Français](../fr-FR/README.md) | [Español](../es-ES/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Türkçe](../tr-TR/README.md) | [Polski](../pl-PL/README.md) | [Italiano](../it-IT/README.md) | [Nederlands](../nl-NL/README.md) | [हिन्दी](../hi-IN/README.md) | [ไทย](../th-TH/README.md)
 
 Yin-Panel Helper 是 Yin-Panel 的可选 Chrome Manifest V3 扩展。当常规浏览器请求被 CORS 拦截时，它为书签导入获取真实站点图标字节，并在失败时回退到公共图标服务，同时提供一个可配置的新标签页重定向。没有该扩展时，Yin-Panel 会使用自带的服务器端图标与文字图标回退方案，因此仍可正常使用。
 
@@ -30,7 +30,7 @@ Yin-Panel Helper 是 Yin-Panel 的可选 Chrome Manifest V3 扩展。当常规�
 
 ## 多语言
 
-界面语言跟随浏览器界面语言。英语、简体中文、繁体中文、日语、韩语、德语、法语、西班牙语、巴西葡萄牙语和俄语的文案存放在 `_locales/` 中；其他浏览器语言会回退到英语。扩展页面文案通过 `i18n.js` 解析，绝不硬编码。
+界面语言跟随浏览器界面语言。英语、简体中文、繁体中文、日语、韩语、德语、法语、西班牙语、巴西葡萄牙语、俄语、印度尼西亚语、土耳其语、波兰语、意大利语、荷兰语、印地语和泰语的文案存放在 `_locales/` 中；其他浏览器语言会回退到英语。扩展页面文案通过 `i18n.js` 解析，绝不硬编码。
 
 ## 开发
 

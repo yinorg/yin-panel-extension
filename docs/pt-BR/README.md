@@ -1,6 +1,6 @@
 # Yin-Panel Helper
 
-[English](../../README.md) | [简体中文](../zh-CN/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Deutsch](../de-DE/README.md) | [Français](../fr-FR/README.md) | [Español](../es-ES/README.md) | **Português (Brasil)** | [Русский](../ru-RU/README.md)
+[English](../../README.md) | [简体中文](../zh-CN/README.md) | [繁體中文](../zh-TW/README.md) | [日本語](../ja-JP/README.md) | [한국어](../ko-KR/README.md) | [Deutsch](../de-DE/README.md) | [Français](../fr-FR/README.md) | [Español](../es-ES/README.md) | **Português (Brasil)** | [Русский](../ru-RU/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Türkçe](../tr-TR/README.md) | [Polski](../pl-PL/README.md) | [Italiano](../it-IT/README.md) | [Nederlands](../nl-NL/README.md) | [हिन्दी](../hi-IN/README.md) | [ไทย](../th-TH/README.md)
 
 Uma extensão opcional do Chrome Manifest V3 para o Yin-Panel. Ela obtém os bytes reais dos favicons dos sites para importações de favoritos quando as requisições normais do navegador são bloqueadas por CORS, recorre a serviços públicos de favicon e adiciona um redirecionamento configurável para novas abas. O Yin-Panel continua funcionando sem ela, usando seus próprios favicons do lado do servidor e ícones de texto como alternativa.
 
@@ -30,7 +30,7 @@ Uma extensão opcional do Chrome Manifest V3 para o Yin-Panel. Ela obtém os byt
 
 ## Idiomas
 
-A interface segue o idioma da interface do navegador. Os textos em inglês, chinês simplificado, chinês tradicional, japonês, coreano, alemão, francês, espanhol, português do Brasil e russo ficam em `_locales/`; qualquer outro idioma do navegador recorre ao inglês. Os textos das páginas da extensão são resolvidos por meio do `i18n.js` e nunca são codificados de forma fixa.
+A interface segue o idioma da interface do navegador. Os textos em inglês, chinês simplificado, chinês tradicional, japonês, coreano, alemão, francês, espanhol, português do Brasil russo, indonésio, turco, polonês, italiano, holandês, hindi e tailandês ficam em `_locales/`; qualquer outro idioma do navegador recorre ao inglês. Os textos das páginas da extensão são resolvidos por meio do `i18n.js` e nunca são codificados de forma fixa.
 
 ## Desenvolvimento
 

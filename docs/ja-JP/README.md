@@ -1,6 +1,6 @@
 # Yin-Panel Helper
 
-[English](../../README.md) | [简体中文](../zh-CN/README.md) | [繁體中文](../zh-TW/README.md) | **日本語** | [한국어](../ko-KR/README.md) | [Deutsch](../de-DE/README.md) | [Français](../fr-FR/README.md) | [Español](../es-ES/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md)
+[English](../../README.md) | [简体中文](../zh-CN/README.md) | [繁體中文](../zh-TW/README.md) | **日本語** | [한국어](../ko-KR/README.md) | [Deutsch](../de-DE/README.md) | [Français](../fr-FR/README.md) | [Español](../es-ES/README.md) | [Português (Brasil)](../pt-BR/README.md) | [Русский](../ru-RU/README.md) | [Bahasa Indonesia](../id-ID/README.md) | [Türkçe](../tr-TR/README.md) | [Polski](../pl-PL/README.md) | [Italiano](../it-IT/README.md) | [Nederlands](../nl-NL/README.md) | [हिन्दी](../hi-IN/README.md) | [ไทย](../th-TH/README.md)
 
 Yin-Panel のための任意の Chrome Manifest V3 拡張機能です。通常のブラウザーリクエストが CORS によってブロックされる場合に、ブックマークのインポート用として実際のサイトの favicon データを取得し、公開 favicon サービスへフォールバックします。さらに、設定可能な新しいタブのリダイレクトを追加します。Yin-Panel はこれがなくても、独自のサーバー側 favicon とテキストアイコンのフォールバックによって動作し続けます。
 
@@ -30,7 +30,7 @@ Yin-Panel のための任意の Chrome Manifest V3 拡張機能です。通常�
 
 ## 言語
 
-インターフェースはブラウザーの UI 言語に従います。英語、簡体字中国語、繁体字中国語、日本語、韓国語、ドイツ語、フランス語、スペイン語、ブラジルポルトガル語、ロシア語の文言は `_locales/` にあり、それ以外のブラウザー言語は英語にフォールバックします。拡張機能ページの文言は `i18n.js` を通じて解決され、ハードコーディングされません。
+インターフェースはブラウザーの UI 言語に従います。英語、簡体字中国語、繁体字中国語、日本語、韓国語、ドイツ語、フランス語、スペイン語、ブラジルポルトガル語、ロシア語、インドネシア語、トルコ語、ポーランド語、イタリア語、オランダ語、ヒンディー語、タイ語の文言は `_locales/` にあり、それ以外のブラウザー言語は英語にフォールバックします。拡張機能ページの文言は `i18n.js` を通じて解決され、ハードコーディングされません。
 
 ## 開発
 
