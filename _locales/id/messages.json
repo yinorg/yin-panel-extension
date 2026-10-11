@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Helper browser untuk impor bookmark Yin-Panel, pengambilan favicon, dan pengalihan tab baru."
+  },
+  "actionTitle": {
+    "message": "Pengaturan tab baru Yin-Panel"
+  },
+  "newTabPageTitle": {
+    "message": "Tab baru"
+  },
+  "settingsPageTitle": {
+    "message": "Pengaturan tab baru"
+  },
+  "settingsHeading": {
+    "message": "Pengaturan tab baru"
+  },
+  "settingsDescription": {
+    "message": "Tetapkan alamat yang dibuka saat tab baru dibuat."
+  },
+  "newTabUrlLabel": {
+    "message": "Alamat tab baru"
+  },
+  "saveButton": {
+    "message": "Simpan"
+  },
+  "resetButton": {
+    "message": "Atur ulang ke bawaan"
+  },
+  "statusInvalidUrl": {
+    "message": "Masukkan alamat http atau https yang valid."
+  },
+  "statusSaved": {
+    "message": "Tersimpan."
+  },
+  "statusSaveFailed": {
+    "message": "Tidak dapat menyimpan. Silakan coba lagi nanti."
+  },
+  "statusResetDone": {
+    "message": "Alamat bawaan dipulihkan."
+  }
+}

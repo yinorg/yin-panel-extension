@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Yin-Panel बुकमार्क आयात, favicon प्राप्ति और नए टैब रीडायरेक्शन के लिए ब्राउज़र हेल्पर।"
+  },
+  "actionTitle": {
+    "message": "Yin-Panel नए टैब की सेटिंग्स"
+  },
+  "newTabPageTitle": {
+    "message": "नया टैब"
+  },
+  "settingsPageTitle": {
+    "message": "नए टैब की सेटिंग्स"
+  },
+  "settingsHeading": {
+    "message": "नए टैब की सेटिंग्स"
+  },
+  "settingsDescription": {
+    "message": "नया टैब बनने पर खोलने के लिए पता सेट करें।"
+  },
+  "newTabUrlLabel": {
+    "message": "नए टैब का पता"
+  },
+  "saveButton": {
+    "message": "सहेजें"
+  },
+  "resetButton": {
+    "message": "डिफ़ॉल्ट पर रीसेट करें"
+  },
+  "statusInvalidUrl": {
+    "message": "एक मान्य http या https पता दर्ज करें।"
+  },
+  "statusSaved": {
+    "message": "सहेजा गया।"
+  },
+  "statusSaveFailed": {
+    "message": "सहेजा नहीं जा सका। कृपया बाद में पुनः प्रयास करें।"
+  },
+  "statusResetDone": {
+    "message": "डिफ़ॉल्ट पता पुनर्स्थापित किया गया।"
+  }
+}

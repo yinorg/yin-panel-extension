@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Yin-Panel yer işareti içe aktarımları, favicon alma ve yeni sekme yönlendirmesi için tarayıcı yardımcısı."
+  },
+  "actionTitle": {
+    "message": "Yin-Panel yeni sekme ayarları"
+  },
+  "newTabPageTitle": {
+    "message": "Yeni sekme"
+  },
+  "settingsPageTitle": {
+    "message": "Yeni sekme ayarları"
+  },
+  "settingsHeading": {
+    "message": "Yeni sekme ayarları"
+  },
+  "settingsDescription": {
+    "message": "Yeni sekme açıldığında açılacak adresi ayarlayın."
+  },
+  "newTabUrlLabel": {
+    "message": "Yeni sekme adresi"
+  },
+  "saveButton": {
+    "message": "Kaydet"
+  },
+  "resetButton": {
+    "message": "Varsayılana sıfırla"
+  },
+  "statusInvalidUrl": {
+    "message": "Geçerli bir http veya https adresi girin."
+  },
+  "statusSaved": {
+    "message": "Kaydedildi."
+  },
+  "statusSaveFailed": {
+    "message": "Kaydedilemedi. Lütfen daha sonra tekrar deneyin."
+  },
+  "statusResetDone": {
+    "message": "Varsayılan adres geri yüklendi."
+  }
+}

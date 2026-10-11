@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "ตัวช่วยเบราว์เซอร์สำหรับ Yin-Panel ในการนำเข้าบุ๊กมาร์ก ดึง favicon และเปลี่ยนเส้นทางแท็บใหม่"
+  },
+  "actionTitle": {
+    "message": "การตั้งค่าแท็บใหม่ของ Yin-Panel"
+  },
+  "newTabPageTitle": {
+    "message": "แท็บใหม่"
+  },
+  "settingsPageTitle": {
+    "message": "การตั้งค่าแท็บใหม่"
+  },
+  "settingsHeading": {
+    "message": "การตั้งค่าแท็บใหม่"
+  },
+  "settingsDescription": {
+    "message": "กำหนดที่อยู่ที่จะเปิดเมื่อสร้างแท็บใหม่"
+  },
+  "newTabUrlLabel": {
+    "message": "ที่อยู่แท็บใหม่"
+  },
+  "saveButton": {
+    "message": "บันทึก"
+  },
+  "resetButton": {
+    "message": "รีเซ็ตเป็นค่าเริ่มต้น"
+  },
+  "statusInvalidUrl": {
+    "message": "กรอกที่อยู่ http หรือ https ที่ถูกต้อง"
+  },
+  "statusSaved": {
+    "message": "บันทึกแล้ว"
+  },
+  "statusSaveFailed": {
+    "message": "บันทึกไม่สำเร็จ กรุณาลองอีกครั้งภายหลัง"
+  },
+  "statusResetDone": {
+    "message": "คืนค่าที่อยู่เริ่มต้นแล้ว"
+  }
+}

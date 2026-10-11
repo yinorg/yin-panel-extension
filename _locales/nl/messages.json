@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Browserhulp voor het importeren van bladwijzers, het ophalen van favicons en het omleiden van nieuwe tabbladen in Yin-Panel."
+  },
+  "actionTitle": {
+    "message": "Yin-Panel: instellingen voor nieuwe tabbladen"
+  },
+  "newTabPageTitle": {
+    "message": "Nieuw tabblad"
+  },
+  "settingsPageTitle": {
+    "message": "Instellingen voor nieuwe tabbladen"
+  },
+  "settingsHeading": {
+    "message": "Instellingen voor nieuwe tabbladen"
+  },
+  "settingsDescription": {
+    "message": "Stel het adres in dat wordt geopend wanneer een nieuw tabblad wordt aangemaakt."
+  },
+  "newTabUrlLabel": {
+    "message": "Adres voor nieuwe tabbladen"
+  },
+  "saveButton": {
+    "message": "Opslaan"
+  },
+  "resetButton": {
+    "message": "Terugzetten naar standaard"
+  },
+  "statusInvalidUrl": {
+    "message": "Voer een geldig http- of https-adres in."
+  },
+  "statusSaved": {
+    "message": "Opgeslagen."
+  },
+  "statusSaveFailed": {
+    "message": "Opslaan mislukt. Probeer het later opnieuw."
+  },
+  "statusResetDone": {
+    "message": "Standaardadres hersteld."
+  }
+}

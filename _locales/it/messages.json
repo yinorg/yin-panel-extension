@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Helper del browser per Yin-Panel: importazione dei segnalibri, recupero delle favicon e reindirizzamento della nuova scheda."
+  },
+  "actionTitle": {
+    "message": "Yin-Panel: impostazioni della nuova scheda"
+  },
+  "newTabPageTitle": {
+    "message": "Nuova scheda"
+  },
+  "settingsPageTitle": {
+    "message": "Impostazioni della nuova scheda"
+  },
+  "settingsHeading": {
+    "message": "Impostazioni della nuova scheda"
+  },
+  "settingsDescription": {
+    "message": "Imposta l'indirizzo da aprire quando viene creata una nuova scheda."
+  },
+  "newTabUrlLabel": {
+    "message": "Indirizzo della nuova scheda"
+  },
+  "saveButton": {
+    "message": "Salva"
+  },
+  "resetButton": {
+    "message": "Ripristina predefinito"
+  },
+  "statusInvalidUrl": {
+    "message": "Inserisci un indirizzo http o https valido."
+  },
+  "statusSaved": {
+    "message": "Salvato."
+  },
+  "statusSaveFailed": {
+    "message": "Salvataggio non riuscito. Riprova più tardi."
+  },
+  "statusResetDone": {
+    "message": "Indirizzo predefinito ripristinato."
+  }
+}

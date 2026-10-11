@@ -1,0 +1,41 @@
+{
+  "extensionDescription": {
+    "message": "Pomocnik przeglądarki dla Yin-Panel do importu zakładek, pobierania favikon i przekierowywania nowej karty."
+  },
+  "actionTitle": {
+    "message": "Yin-Panel: ustawienia nowej karty"
+  },
+  "newTabPageTitle": {
+    "message": "Nowa karta"
+  },
+  "settingsPageTitle": {
+    "message": "Ustawienia nowej karty"
+  },
+  "settingsHeading": {
+    "message": "Ustawienia nowej karty"
+  },
+  "settingsDescription": {
+    "message": "Ustaw adres otwierany przy tworzeniu nowej karty."
+  },
+  "newTabUrlLabel": {
+    "message": "Adres nowej karty"
+  },
+  "saveButton": {
+    "message": "Zapisz"
+  },
+  "resetButton": {
+    "message": "Przywróć domyślne"
+  },
+  "statusInvalidUrl": {
+    "message": "Wprowadź prawidłowy adres http lub https."
+  },
+  "statusSaved": {
+    "message": "Zapisano."
+  },
+  "statusSaveFailed": {
+    "message": "Nie udało się zapisać. Spróbuj ponownie później."
+  },
+  "statusResetDone": {
+    "message": "Przywrócono domyślny adres."
+  }
+}
